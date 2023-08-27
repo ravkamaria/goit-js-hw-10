@@ -4,9 +4,11 @@ img{
     padding-top: 20px;
 }
 
-span{
+.temperament{
     font-weight: bold;
 }
+
+
 
 .cat-info{
     display: flex;
@@ -15,6 +17,14 @@ span{
 
 .text-info{
     width: 500px;
+}
+
+.breed-select{
+    text-align: left;
+}
+
+.breed-select-hidden{
+    display: none;
 }
 
 .error{
@@ -36,3 +46,26 @@ span{
     display: none;
 }
 
+.loaderSpiner {
+    width: 500px;
+    height: 16px;
+    display: inline-block;
+    background-color: #FFF;
+    border: 1px solid #FFF;
+    border-radius: 4px;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.25) 75%, transparent 75%, transparent);
+    font-size: 30px;
+    background-size: 1em 1em;
+    box-sizing: border-box;
+    animation: barStripe 1s linear infinite;
+  }
+  
+  @keyframes barStripe {
+    0% {
+      background-position: 1em 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+ 

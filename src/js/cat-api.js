@@ -1,4 +1,7 @@
 import { elements } from './index';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+elements.select.classList.replace("breed-select-hidden", "breed-select");
 
 function fetchBreeds() {
   const BASE_URL = 'https://api.thecatapi.com/v1';
@@ -30,14 +33,17 @@ function fetchBreeds() {
       }
     })
     .catch(err => {
-      elements.error.classList.replace("error-hidden", "error")
+      elements.loader.classList.replace("loader", "loader-hidden");
+      elements.select.classList.replace("breed-select", "breed-select-hidden");
+      Notify.failure('Oops! Something went wrong! Try reloading the page!');
+      // elements.error.classList.replace("error-hidden", "error")
     });
 }
 
 function fetchCatByBreed(breedId) {
   elements.catInfo.innerHTML = '';
   elements.loader.classList.replace("loader-hidden", "loader");
-  elements.error.classList.replace("error", "error-hidden");
+  // elements.error.classList.replace("error", "error-hidden");
   return fetch(
     `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=live_Uedqd6mbrG08P2XhhOIDv14LHePtwKtKeKFm0DZ3BIclh3nQNBQNI9f5J7S8R8eR`
   )
@@ -53,7 +59,9 @@ function fetchCatByBreed(breedId) {
     })
     .catch(err => {
       elements.catInfo.innerHTML = '';
-      elements.error.classList.replace("error-hidden", "error")
+      elements.loader.classList.replace("loader", "loader-hidden");
+      Notify.failure('Oops! Something went wrong! Try reloading the page!');
+      // elements.error.classList.replace("error-hidden", "error")
     });
 }
 
@@ -66,7 +74,7 @@ function createMarkUp(arr) {
   // const {description, name, temperament} = arr[0].breed[0];
   const markup = `<img src="${url}" alt="${name}">
   <div class="text-info"><h2 class="cat-name">${name}</h2>
-  <p class="cat-discr"><span>Temperament:</span> ${temperament}</p>
+  <p class="cat-discr"><span class="temperament">Temperament:</span> ${temperament}</p>
   <p class="cat-discr">${description}</p></div>`;
 
   elements.catInfo.insertAdjacentHTML('beforeend', markup);
