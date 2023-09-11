@@ -35,10 +35,9 @@ function fetchBreeds() {
         elements.select.appendChild(option);
         elements.loader.classList.replace('loader', 'loader-hidden');
       }  
-      new SlimSelect({
-        select: elements.select,
-        setData: data
-      })
+      let select = new SlimSelect({
+        select: elements.select})
+        select.setData([data]);
     })
     .catch(err => {
       elements.loader.classList.replace('loader', 'loader-hidden');
